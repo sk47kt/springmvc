@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import sk47kt.springmvc.basic.HelloData;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.util.Map;
 import java.util.Objects;
 
@@ -80,4 +81,19 @@ public class RequestParamController {
         log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
         return "OK";
     }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData data) {
+        log.info("helloData={}",data);
+        return "OK";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(HelloData data) { //@ModelAttribute 생략
+        log.info("helloData={}",data);
+        return "OK";
+    }
+
 }
